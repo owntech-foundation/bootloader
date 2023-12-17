@@ -1,0 +1,67 @@
+/ {
+	chosen {
+		zephyr,code-partition = &boot_partition;
+		zephyr,uart-mcumgr = &cdc_acm_uart0;
+		zephyr,console = &lpuart1;
+	};
+
+	aliases {
+		mcuboot-led0 = &green_led;
+		mcuboot-button0 = &user_button;
+	};
+};
+
+&flash {
+	label = "FLASH_CTRL";
+};
+
+/delete-node/ &storage_partition;
+
+&flash0 {
+
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000 0x10000>;
+		};
+
+		slot0_partition: partition@10000 {
+			label = "image-0";
+			reg = <0x00010000 0x00037800>;
+		};
+
+		slot1_partition: partition@47800 {
+			label = "image-1";
+			reg = <0x00047800 0x00037800>;
+		};
+
+		storage_partition: partition@7F000 {
+			label = "storage";
+			reg = <0x7F000 0x1000>;
+		};
+    };
+};
+
+&usb {
+	disconnect-gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+};
+
+zephyr_udc0: &usb {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+		label = "CDC_ACM_0";
+	};
+	pinctrl-0 = <&usb_dm_pa11 &usb_dp_pa12>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&user_button {
+	label = "User";
+	gpios = <&gpioc 14 (GPIO_PULL_DOWN)>;
+};

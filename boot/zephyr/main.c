@@ -479,6 +479,18 @@ int main(void)
 #endif
 #endif
 
+    /* Do not boot if user button was pressed */
+    if (io_detect_pin_anyway()) {
+        io_led_set(1);
+        usb_enable(NULL);
+        BOOT_LOG_INF("User button pressed: stay in bootloader mode");
+        while (1)
+        {
+            // Wait forever
+            k_sleep(K_MSEC(1000));
+        }
+    }
+
     FIH_CALL(boot_go, fih_rc, &rsp);
 
 #ifdef CONFIG_BOOT_SERIAL_BOOT_MODE

@@ -255,7 +255,8 @@ endif()
 if(CONFIG_MCUBOOT_SERIAL)
   zephyr_sources(${BOOT_DIR}/zephyr/serial_adapter.c)
   zephyr_sources(${BOOT_DIR}/boot_serial/src/boot_serial.c)
-  zephyr_sources(${BOOT_DIR}/boot_serial/src/zcbor_bulk.c)
+# ZCBOR is already included by mcumgr
+#  zephyr_sources(${BOOT_DIR}/boot_serial/src/zcbor_bulk.c)
 
   zephyr_include_directories(${BOOT_DIR}/bootutil/include)
   zephyr_include_directories(${BOOT_DIR}/boot_serial/include)

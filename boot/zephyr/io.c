@@ -98,6 +98,36 @@ void io_led_set(int value)
 }
 #endif /* CONFIG_MCUBOOT_INDICATION_LED */
 
+#define BUTTON_0_NODE DT_ALIAS(mcuboot_button0)
+
+#if DT_NODE_EXISTS(BUTTON_0_NODE) && DT_NODE_HAS_PROP(BUTTON_0_NODE, gpios)
+static const struct gpio_dt_spec button0 = GPIO_DT_SPEC_GET(BUTTON_0_NODE, gpios);
+#else
+#error "Serial recovery/USB DFU button must be declared in device tree as 'mcuboot_button0'"
+#endif
+
+bool io_detect_pin_anyway(void)
+{
+    int rc;
+    int pin_active;
+
+    if (!device_is_ready(button0.port)) {
+        __ASSERT(false, "GPIO device is not ready.\n");
+        return false;
+    }
+
+    rc = gpio_pin_configure_dt(&button0, GPIO_INPUT);
+    __ASSERT(rc == 0, "Failed to initialize boot detect pin.\n");
+
+    rc = gpio_pin_get_dt(&button0);
+    pin_active = rc;
+
+    __ASSERT(rc >= 0, "Failed to read boot detect pin.\n");
+
+    return (bool)pin_active;
+}
+
+
 #if defined(CONFIG_BOOT_SERIAL_ENTRANCE_GPIO) || defined(CONFIG_BOOT_USB_DFU_GPIO) || \
     defined(CONFIG_BOOT_FIRMWARE_LOADER_ENTRANCE_GPIO)
 
@@ -107,14 +137,6 @@ void io_led_set(int value)
 #define BUTTON_0_DETECT_DELAY CONFIG_BOOT_FIRMWARE_LOADER_DETECT_DELAY
 #else
 #define BUTTON_0_DETECT_DELAY CONFIG_BOOT_USB_DFU_DETECT_DELAY
-#endif
-
-#define BUTTON_0_NODE DT_ALIAS(mcuboot_button0)
-
-#if DT_NODE_EXISTS(BUTTON_0_NODE) && DT_NODE_HAS_PROP(BUTTON_0_NODE, gpios)
-static const struct gpio_dt_spec button0 = GPIO_DT_SPEC_GET(BUTTON_0_NODE, gpios);
-#else
-#error "Serial recovery/USB DFU button must be declared in device tree as 'mcuboot_button0'"
 #endif
 
 bool io_detect_pin(void)
