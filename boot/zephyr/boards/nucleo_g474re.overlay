@@ -3,16 +3,33 @@
 		zephyr,code-partition = &boot_partition;
 		zephyr,uart-mcumgr = &cdc_acm_uart0;
 		zephyr,console = &lpuart1;
+		zephyr,boot-mode = &retention0;
 	};
 
 	aliases {
 		mcuboot-led0 = &green_led;
 		mcuboot-button0 = &user_button;
 	};
-};
 
-&flash {
-	label = "FLASH_CTRL";
+	sram@2001FFFF {
+		compatible = "zephyr,memory-region", "mmio-sram";
+		reg = <0x2001FFFF 0x1>;
+		zephyr,memory-region = "RetainedMem";
+		status = "okay";
+
+		retainedmem {
+			compatible = "zephyr,retained-ram";
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			retention0: retention@0 {
+				compatible = "zephyr,retention";
+				status = "okay";
+				reg = <0x0 0x1>;
+			};
+		};
+	};
 };
 
 /delete-node/ &storage_partition;
@@ -46,6 +63,10 @@
     };
 };
 
+&sram0 {
+    reg = <0x20000000 0x1FFFF>;
+};
+
 &usb {
 	disconnect-gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
 	status = "okay";
@@ -54,7 +75,6 @@
 zephyr_udc0: &usb {
 	cdc_acm_uart0: cdc_acm_uart0 {
 		compatible = "zephyr,cdc-acm-uart";
-		label = "CDC_ACM_0";
 	};
 	pinctrl-0 = <&usb_dm_pa11 &usb_dp_pa12>;
 	pinctrl-names = "default";

@@ -502,6 +502,17 @@ int main(void)
     }
 #endif
 
+    if (io_detect_boot_mode()) {
+        io_led_set(1);
+        usb_enable(NULL);
+        BOOT_LOG_INF("Bootloader mode triggered from application");
+        while (1)
+        {
+            // Wait forever
+            k_sleep(K_MSEC(1000));
+        }
+    }
+
 #ifdef CONFIG_BOOT_SERIAL_WAIT_FOR_DFU
     timeout_in_ms -= (k_uptime_get_32() - start);
     if( timeout_in_ms <= 0 ) {
