@@ -1,18 +1,18 @@
 
-# Bootloader
+## Bootloader
 
 OwnTech use its own bootloader in order to be able to flash code using USB without the use of a dedicated debug tool. 
 
 It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader supported by the zephyr ecosystem. 
 
-# Features
+## Features
 
 - USB ready
 - Supports Over The Air (OTA) updates
 - Image validation 
 - Encryption ready
 
-# Boot sequence
+## Boot sequence
 
 <div class="grid cards" markdown>
 
@@ -26,9 +26,9 @@ When pressing reset button the following happens :
 </div>
 
 
-# Nomal Upload sequence
+## Nomal Upload sequence
 
-=== "Upload"
+=== " "
     ![Memory_map](bootloader.drawio.svg){ align=left }
 
     When pressing upload button the following happens : 
@@ -45,7 +45,7 @@ When pressing reset button the following happens :
     Image swapping requires having a valid image at address 0x8010000. 
     If no image-0 is present normal upload sequence will fail. Use Recovery Mode to upload a valid Image-0 and proceed again.
 
-# Recovery Mode 
+## Recovery Mode 
 
 === "Recovery"
     ![Memory_map](bootloader_recovery.drawio.svg){ align=left }
@@ -68,7 +68,7 @@ When pressing reset button the following happens :
     Recovery mode is significantly slower than Normal Upload Sequence.
 
 
-# How it works
+## How it works
 
 USB upload uses what is called a magic baudrate callback. 
 
