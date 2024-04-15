@@ -19,8 +19,8 @@ When pressing reset button the following happens :
 - Program initiates at 0x80000000, and bootloader is launched.
 - Bootloader jumps at Image-0 address at 0x8010000. 
 
+![Memory_map](bootloader_boot.drawio.svg){ align=left }
 
-![Memory_map](bootloader.drawio.svg)
 
 # Nomal Upload sequence
 
@@ -32,13 +32,12 @@ When pressing upload button the following happens :
 - A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
 - Application code is executed from address 0x8010000
 
-**Warning** 
-Image swapping requires having a valid image at address 0x8010000. 
-If no image-0 is present normal upload sequence will fail. Use Recovery Mode to upload a valid Image-0 and proceed again.
+![Memory_map](bootloader.drawio.svg){ align=left }
 
+!!! warning
 
-
-![Memory_map](bootloader.drawio.svg)
+    Image swapping requires having a valid image at address 0x8010000. 
+    If no image-0 is present normal upload sequence will fail. Use Recovery Mode to upload a valid Image-0 and proceed again.
 
 # Recovery Mode 
 
@@ -46,21 +45,27 @@ The OwnTech bootloader has a recovery mode in order to flash directly the Image-
 
 To enter recovery mode, press BOOT button and RESET button simultaneously. 
 
-**Note**
-When entering recovery mode, the user LED should light up
+!!! note
+    
+    When entering recovery mode, the user LED should light up
 
 When pressing the upload button in recovery mode the following happens : 
 
 - User program is written at the address 0x8010000 directly. 
 - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
 
-**Note**
-Recovery mode is significantly slower than Normal Upload Sequence.
+![Memory_map](bootloader_recovery.drawio.svg){ align=left }
+
+!!! note
+    
+    Recovery mode is significantly slower than Normal Upload Sequence.
 
 # How it works
 
 USB upload uses what is called a magic baudrate callback. 
+
 When pressing the upload button:
+
 - The user code is compiled, creating a bin executable.
 - A trailer containing meta-data is added to the bin file, and the executable is marked for testing.  
 - The USB serial disconnects and reconnects using the magic 1200Baud baudrate. 
@@ -70,6 +75,3 @@ When pressing the upload button:
 - Bootloader starts and detects the new image trailer marked for testing.
 - Bootloader performs the swap action
 - Bootloader jumps to user application at address 0x8010000 and USB serial is available again.
-
-
- 

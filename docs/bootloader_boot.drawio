@@ -1,0 +1,74 @@
+<mxfile host="app.diagrams.net" modified="2024-04-15T12:41:05.701Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="ZVSKRqVhowFctQxfi3UC" version="24.2.1" type="device">
+  <diagram name="Page-1" id="RuAQtbNqCfSwzMXXSnDz">
+    <mxGraphModel dx="778" dy="438" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QR6tN2PlZgDvppWImNZz-57" value="Bootloader&#xa;" style="whiteSpace=wrap;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="243" y="395" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-58" value="Image 0" style="whiteSpace=wrap;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="243" y="435" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-59" value="Image 1" style="whiteSpace=wrap;strokeWidth=2;gradientColor=default;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="243" y="515" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-60" value="NVS" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="243" y="595" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-61" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="QR6tN2PlZgDvppWImNZz-57" target="QR6tN2PlZgDvppWImNZz-58">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="363" y="565" as="sourcePoint" />
+            <mxPoint x="413" y="515" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="353" y="415" />
+              <mxPoint x="353" y="435" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-63" value="0x8000000" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="385" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-64" value="0x8010000" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="425" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-65" value="0x8047800" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="505" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-66" value="0x807F000" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="585" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-67" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.038;entryY=-0.006;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="QR6tN2PlZgDvppWImNZz-57">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="353" y="395" as="sourcePoint" />
+            <mxPoint x="413" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-68" value="Start-up sequence" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="357" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-69" value="&lt;div style=&quot;font-size: 10px;&quot; align=&quot;left&quot;&gt;Initiates at bootloader address&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="357" y="380" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-70" value="&lt;div style=&quot;font-size: 10px;&quot; align=&quot;left&quot;&gt;Bootloader jumps at Image 0 address&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="357" y="410" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-71" value="64 kB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="258" y="415" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-72" value="222 kB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="258" y="485" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-73" value="222 kB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="258" y="565" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-74" value="4 kB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="258" y="615" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QR6tN2PlZgDvppWImNZz-75" value="Absolute memory address" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="184" y="355" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
