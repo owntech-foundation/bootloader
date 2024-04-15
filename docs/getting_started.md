@@ -14,17 +14,13 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 ## Boot sequence
 
-<div class="grid cards" markdown>
+=== " "
+    ![Memory_map](bootloader_boot.drawio.svg){ align=left }
 
-- ![Memory_map](bootloader_boot.drawio.svg){ align=left }{ .card }
 
-
-When pressing reset button the following happens : 
-- Program initiates at 0x80000000, and bootloader is launched.
-- Bootloader jumps at Image-0 address at 0x8010000. { .card }
-
-</div>
-
+    When pressing reset button the following happens : 
+    - Program initiates at 0x80000000, and bootloader is launched.
+    - Bootloader jumps at Image-0 address at 0x8010000.
 
 ## Nomal Upload sequence
 
@@ -47,7 +43,7 @@ When pressing reset button the following happens :
 
 ## Recovery Mode 
 
-=== "Recovery"
+=== " "
     ![Memory_map](bootloader_recovery.drawio.svg){ align=left }
 
     The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. 
