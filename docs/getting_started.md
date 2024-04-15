@@ -24,17 +24,17 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 ## Nomal Upload sequence
 
+   When pressing upload button the following happens : 
+
 === " "
     ![Memory_map](bootloader.drawio.svg){ align=left }
-
-    When pressing upload button the following happens : 
-
+    
     - Image-1 is the memory bank where the program is uploaded using USB. 
     - When the USB transfer is complete, a reboot order is sent to the board. 
-    - Image is marked for testing, so a memory swap is performed. Image-1 is sent to memory bank 0 at the address 0x8010000 and Image-0 is sent to memory bank 1 at the address 0x8047800. 
-    - A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
-    - Application code is executed from address 0x8010000
 
+- Image is marked for testing, so a memory swap is performed. Image-1 is sent to memory bank 0 at the address 0x8010000 and Image-0 is sent to memory bank 1 at the address 0x8047800. 
+- A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
+- Application code is executed from address 0x8010000
 
 !!! warning
 
@@ -43,14 +43,14 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 ## Recovery Mode 
 
+The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. 
+
+To enter recovery mode, press BOOT button and RESET button simultaneously. 
+
+When pressing the upload button in recovery mode the following happens : 
+
 === " "
     ![Memory_map](bootloader_recovery.drawio.svg){ align=left }
-
-    The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. 
-
-    To enter recovery mode, press BOOT button and RESET button simultaneously. 
-
-    When pressing the upload button in recovery mode the following happens : 
 
     - User program is written at the address 0x8010000 directly. 
     - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
