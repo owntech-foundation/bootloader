@@ -14,15 +14,18 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 # Boot sequence
 
+![Memory_map](bootloader_boot.drawio.svg){ align=left }
+
 When pressing reset button the following happens : 
 
 - Program initiates at 0x80000000, and bootloader is launched.
 - Bootloader jumps at Image-0 address at 0x8010000. 
 
-![Memory_map](bootloader_boot.drawio.svg){ align=left }
 
 
 # Nomal Upload sequence
+
+![Memory_map](bootloader.drawio.svg){ align=left }
 
 When pressing upload button the following happens : 
 
@@ -32,7 +35,8 @@ When pressing upload button the following happens :
 - A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
 - Application code is executed from address 0x8010000
 
-![Memory_map](bootloader.drawio.svg){ align=left }
+
+
 
 !!! warning
 
@@ -40,6 +44,8 @@ When pressing upload button the following happens :
     If no image-0 is present normal upload sequence will fail. Use Recovery Mode to upload a valid Image-0 and proceed again.
 
 # Recovery Mode 
+
+![Memory_map](bootloader_recovery.drawio.svg){ align=left }
 
 The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. 
 
@@ -54,11 +60,10 @@ When pressing the upload button in recovery mode the following happens :
 - User program is written at the address 0x8010000 directly. 
 - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
 
-![Memory_map](bootloader_recovery.drawio.svg){ align=left }
-
 !!! note
     
     Recovery mode is significantly slower than Normal Upload Sequence.
+
 
 # How it works
 
