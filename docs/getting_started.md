@@ -14,14 +14,16 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 # Boot sequence
 
-|  ![Memory_map](bootloader_boot.drawio.svg){ align=left }
+<div class="grid cards" markdown>
+
+- ![Memory_map](bootloader_boot.drawio.svg){ align=left }{ .card }
+
 
 When pressing reset button the following happens : 
-
 - Program initiates at 0x80000000, and bootloader is launched.
-- Bootloader jumps at Image-0 address at 0x8010000. 
-  |
-|---|
+- Bootloader jumps at Image-0 address at 0x8010000. { .card }
+
+</div>
 
 
 # Nomal Upload sequence
