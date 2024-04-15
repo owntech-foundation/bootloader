@@ -21,6 +21,7 @@ When pressing reset button the following happens :
 - Program initiates at 0x80000000, and bootloader is launched.
 - Bootloader jumps at Image-0 address at 0x8010000. 
 
+----
 
 
 # Nomal Upload sequence
@@ -34,7 +35,7 @@ When pressing upload button the following happens :
 - Image is marked for testing, so a memory swap is performed. Image-1 is sent to memory bank 0 at the address 0x8010000 and Image-0 is sent to memory bank 1 at the address 0x8047800. 
 - A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
 - Application code is executed from address 0x8010000
-
+----
 
 
 
@@ -51,14 +52,15 @@ The OwnTech bootloader has a recovery mode in order to flash directly the Image-
 
 To enter recovery mode, press BOOT button and RESET button simultaneously. 
 
-!!! note
-    
-    When entering recovery mode, the user LED should light up
-
 When pressing the upload button in recovery mode the following happens : 
 
 - User program is written at the address 0x8010000 directly. 
 - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
+----
+
+!!! note
+    
+    When entering recovery mode, the user LED should light up
 
 !!! note
     
