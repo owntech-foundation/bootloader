@@ -1,13 +1,9 @@
-
-## Bootloader
-
 OwnTech use its own bootloader in order to be able to flash code using USB without the use of a dedicated debug tool. 
-
 It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader supported by the zephyr ecosystem. 
 
 ## Features
 
-- USB ready
+- USB compatible
 - Supports Over The Air (OTA) updates
 - Image validation 
 - Encryption ready
@@ -43,9 +39,9 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 ## Recovery Mode 
 
-The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. 
+The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action.  
 
-To enter recovery mode, press BOOT button and RESET button simultaneously. 
+To enter recovery mode, press BOOT button and RESET button simultaneously.  
 
 When pressing the upload button in recovery mode the following happens : 
 
@@ -66,9 +62,8 @@ When pressing the upload button in recovery mode the following happens :
 
 ## How it works
 
-USB upload uses what is called a magic baudrate callback. 
-
-When pressing the upload button:
+USB upload uses what is called a magic baudrate callback.  
+When pressing the upload button:  
 
 - The user code is compiled, creating a bin executable.
 - A trailer containing meta-data is added to the bin file, and the executable is marked for testing.  
