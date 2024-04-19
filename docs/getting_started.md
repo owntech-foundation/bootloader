@@ -11,7 +11,7 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 ## Boot sequence
 
 === " "
-    ![Memory_map](bootloader_boot.drawio.svg){ align=left }
+    ![Memory_map](images/bootloader_boot.drawio.svg){ align=left }
 
 
     When pressing reset button the following happens : 
@@ -23,7 +23,7 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
    When pressing upload button the following happens : 
 
 === " "
-    ![Memory_map](bootloader.drawio.svg){ align=left }
+    ![Memory_map](images/bootloader.drawio.svg){ align=left }
     
     - Image-1 is the memory bank where the program is uploaded using USB. 
     - When the USB transfer is complete, a reboot order is sent to the board. 
@@ -46,7 +46,7 @@ To enter recovery mode, press BOOT button and RESET button simultaneously.
 When pressing the upload button in recovery mode the following happens : 
 
 === " "
-    ![Memory_map](bootloader_recovery.drawio.svg){ align=left }
+    ![Memory_map](images/bootloader_recovery.drawio.svg){ align=left }
 
     - User program is written at the address 0x8010000 directly. 
     - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
