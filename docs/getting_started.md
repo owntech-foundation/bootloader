@@ -15,6 +15,7 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 
 
     When pressing reset button the following happens : 
+    
     - Program initiates at 0x80000000, and bootloader is launched.
     - Bootloader jumps at Image-0 address at 0x8010000.
 
@@ -25,24 +26,53 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
 === " "
     ![Memory_map](images/bootloader.drawio.svg){ align=left }
     
-    - Image-1 is the memory bank where the program is uploaded using USB. 
+    - Image-1 is the memory bank where the program is uploaded using USB or via STLink
     - When the USB transfer is complete, a reboot order is sent to the board. 
 
-- Image is marked for testing, so a memory swap is performed. Image-1 is sent to memory bank 0 at the address 0x8010000 and Image-0 is sent to memory bank 1 at the address 0x8047800. 
-- A boot test is performed. If the initialization is successful, the new program is marked as good and stays in image-0. Otherwise, the image is rejected and the swap action is reverted. 
-- Application code is executed from address 0x8010000
+- Image is marked for testing
+- A memory swap is performed. Image-1 is sent to memory bank 0 at the address 0x8010000 and Image-0 is sent to memory bank 1 at the address 0x8047800. 
+- A boot test is performed.
+  - If the initialization is successful, the new program is marked as good and stays in image-0.
+  - Otherwise, the image is rejected and the swap action is reverted. 
+- After that, application code is executed normally from address 0x8010000
+
+!!! note
+
+    This bootloading sequence is complex but has advantages. If your program has an issue during initialization, the bootloader will detect it and will reject the     image. 
+
+    After a Reset, the previous working program will be launched, recovering the board from a non functional program that would have otherwise bricked it.
 
 !!! warning
 
     Image swapping requires having a valid image at address 0x8010000. 
-    If no image-0 is present normal upload sequence will fail. Use Recovery Mode to upload a valid Image-0 and proceed again.
+    
+    If no image-0 is present normal upload sequence will fail. 
+    
+    If you observe serial messages using an STlink, you will receive a message like below 
+    
+    ```*** Booting Zephyr OS build zephyr-v3.5.0 ***
+I: Starting bootloader
+I: Primary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
+I: Secondary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
+I: Boot source: none
+W: Failed reading image headers; Image=0```
+
+!!! tip 
+
+    In that case use Recovery Mode to upload a valid Image-0 and proceed again.
 
 ## Recovery Mode 
 
-The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action.  
+The OwnTech bootloader has a recovery mode in order to flash directly the Image-0 without performing a swap action. This mode is really helpfull to recover the board when something went wrong.
 
-To enter recovery mode, press BOOT button and RESET button simultaneously.  
+!!! tip
 
+    To enter recovery mode, press BOOT button and RESET button simultaneously.  
+
+!!! success
+
+    When entering recovery mode, the user LED should light up
+    
 When pressing the upload button in recovery mode the following happens : 
 
 === " "
@@ -51,9 +81,6 @@ When pressing the upload button in recovery mode the following happens :
     - User program is written at the address 0x8010000 directly. 
     - A reboot is performed and the bootloader jumps to user code at address 0x8010000.
 
-!!! note
-    
-    When entering recovery mode, the user LED should light up
 
 !!! note
     
