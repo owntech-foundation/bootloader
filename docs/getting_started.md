@@ -50,12 +50,14 @@ It is based on [MCUBoot](https://docs.mcuboot.com/) an open source bootloader su
     
     If you observe serial messages using an STlink, you will receive a message like below 
     
-    ```*** Booting Zephyr OS build zephyr-v3.5.0 ***
-I: Starting bootloader
-I: Primary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
-I: Secondary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
-I: Boot source: none
-W: Failed reading image headers; Image=0```
+    ``` title="Serial Port"
+    *** Booting Zephyr OS build zephyr-v3.5.0 ***
+    I: Starting bootloader
+    I: Primary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
+    I: Secondary image: magic=good, swap_type=0x1, copy_done=0x3, image_ok=0x3
+    I: Boot source: none
+    W: Failed reading image headers; Image=0
+    ```
 
 !!! tip 
 
